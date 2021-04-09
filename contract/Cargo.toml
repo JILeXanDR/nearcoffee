@@ -1,5 +1,5 @@
 [package]
-name = "contract"
+name = "main"
 version = "0.1.0"
 authors = ["Alexandr <jilexandr@gmail.com>"]
 edition = "2018"
