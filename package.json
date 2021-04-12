@@ -1,0 +1,14 @@
+{
+  "name": "buy-me-a-coffee",
+  "version": "0.0.1",
+  "main": "index.js",
+  "author": "Alexandr <jilexandr@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "be:test": "(cd contract && cargo test)",
+    "be:build": "(cd contract && ./build.sh)",
+    "be:dev_deploy": "near dev-deploy out/main.wasm",
+    "be:clear": "rm -R neardev",
+    "be:build_and_dev_deploy": "yarn build && yarn dev_deploy"
+  }
+}
