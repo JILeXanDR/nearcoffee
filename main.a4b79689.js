@@ -59276,6 +59276,7 @@ function () {
       return __generator(this, function (_a) {
         switch (_a.label) {
           case 0:
+            // @ts-ignore
             return [4
             /*yield*/
             , this.contract.buy_one_coffee_for({
@@ -59283,6 +59284,7 @@ function () {
             }, 0, coffeePrice)];
 
           case 1:
+            // @ts-ignore
             _a.sent();
 
             return [2
@@ -59305,6 +59307,7 @@ function () {
             })];
 
           case 1:
+            // @ts-ignore
             return [2
             /*return*/
             , _a.sent()];
@@ -59316,6 +59319,7 @@ function () {
   NearAdapter.prototype.getSupporters = function (profileId) {
     return __awaiter(this, void 0, Promise, function () {
       return __generator(this, function (_a) {
+        // @ts-ignore
         return [2
         /*return*/
         , this.contract.who_bought_coffee_for({
@@ -60545,22 +60549,6 @@ var App = function App() {
 };
 
 exports.App = App;
-
-var SecuredRoute = function SecuredRoute(props) {
-  var auth = auth_context_1.useAuth();
-
-  if (!auth.isSignedIn) {
-    return /*#__PURE__*/React.createElement("h1", null, "You're not authorized to view this page");
-  }
-
-  return /*#__PURE__*/React.createElement(react_router_1.Route, {
-    render: props.children
-  }); // return (
-  //     <Route render={(props) => (
-  //         auth.isSignedIn === true ? props.children : <Redirect to={{ pathname: '/', state: {} }}/>
-  //     )}/>
-  // );
-};
 },{"react":"node_modules/react/index.js","react-router":"node_modules/react-router/esm/react-router.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","./auth.context":"src/auth.context.tsx","./Dashboard":"src/Dashboard.tsx","./Debug":"src/Debug.tsx","./MyPublicProfileLink":"src/MyPublicProfileLink.tsx","./ViewProfile":"src/ViewProfile.tsx","./Welcome":"src/Welcome.tsx"}],"src/main.tsx":[function(require,module,exports) {
 "use strict";
 
@@ -60621,8 +60609,10 @@ var App_1 = require("./App");
 var auth_context_1 = require("./auth.context");
 
 var history = history_1.createBrowserHistory();
+var routePrefix = "dev" === 'production' ? '/nearcoffee' : '';
 react_dom_1.default.render( /*#__PURE__*/React.createElement(auth_context_1.AuthProvider, null, /*#__PURE__*/React.createElement(react_router_1.Router, {
-  history: history
+  history: history,
+  path: routePrefix
 }, /*#__PURE__*/React.createElement(App_1.App, null))), document.getElementById('root'));
 },{"history":"node_modules/history/esm/history.js","react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","react-router":"node_modules/react-router/esm/react-router.js","./App":"src/App.tsx","./auth.context":"src/auth.context.tsx"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -60652,7 +60642,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57298" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52631" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
