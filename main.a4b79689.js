@@ -60602,7 +60602,7 @@ var React = __importStar(require("react"));
 
 var react_dom_1 = __importDefault(require("react-dom"));
 
-var react_router_1 = require("react-router");
+var react_router_dom_1 = require("react-router-dom");
 
 var App_1 = require("./App");
 
@@ -60610,11 +60610,11 @@ var auth_context_1 = require("./auth.context");
 
 var history = history_1.createBrowserHistory();
 var routePrefix = "dev" === 'production' ? '/nearcoffee' : '';
-react_dom_1.default.render( /*#__PURE__*/React.createElement(auth_context_1.AuthProvider, null, /*#__PURE__*/React.createElement(react_router_1.Router, {
+react_dom_1.default.render( /*#__PURE__*/React.createElement(auth_context_1.AuthProvider, null, /*#__PURE__*/React.createElement(react_router_dom_1.BrowserRouter, {
   history: history,
-  path: routePrefix
+  basename: undefined
 }, /*#__PURE__*/React.createElement(App_1.App, null))), document.getElementById('root'));
-},{"history":"node_modules/history/esm/history.js","react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","react-router":"node_modules/react-router/esm/react-router.js","./App":"src/App.tsx","./auth.context":"src/auth.context.tsx"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"history":"node_modules/history/esm/history.js","react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","./App":"src/App.tsx","./auth.context":"src/auth.context.tsx"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
