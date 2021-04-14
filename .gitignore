@@ -1,3 +1,6 @@
 .idea
 out
 neardev
+.cache
+dist
+node_modules

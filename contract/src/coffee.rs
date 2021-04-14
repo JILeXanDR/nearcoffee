@@ -3,7 +3,7 @@ use near_sdk::borsh::{self, BorshDeserialize, BorshSerialize};
 use near_sdk::serde::{Deserialize, Serialize};
 
 // TODO: better to make it configurable
-#[derive(BorshDeserialize, BorshSerialize, Serialize, Debug)]
+#[derive(BorshDeserialize, BorshSerialize, Serialize, Deserialize, Debug)]
 pub enum CoffeePrice {
     // any price
     Custom(Balance),

@@ -16,7 +16,7 @@
 ### Setup
 
 ```shell
-export CONTRACT=dev-1618053703804-3523959
+export CONTRACT=dev-1618250281091-9032689
 export ACCOUNT_ID=jilexandr.testnet
 ```
 
