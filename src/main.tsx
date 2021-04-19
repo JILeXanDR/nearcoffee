@@ -1,17 +1,21 @@
-import { createBrowserHistory } from 'history';
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import { Router } from 'react-router';
-import { App } from './App';
-import { AuthProvider } from './auth.context';
+import { App } from '~App';
+import { useConfig } from '~config';
+import '~index.css';
+import { init, instance } from '~near.adapter';
 
-const history = createBrowserHistory();
+// TODO: tiny-warning.esm.js:11 Warning: <BrowserRouter> ignores the history prop.
+//  To use a custom history, use `import { Router }` instead of `import { BrowserRouter as Router }`.
 
-ReactDOM.render((
-        <AuthProvider>
-            <Router history={history}>
-                <App/>
-            </Router>
-        </AuthProvider>
-    ), document.getElementById('root'),
-);
+const config = useConfig();
+
+init(config)
+    .then((near) => {
+        // @ts-ignore
+        instance = near;
+        ReactDOM.render(<App/>, document.querySelector('#root'));
+    })
+    .catch((e) => {
+        console.error(`Failed to init NEAR: ${e.toString()}`);
+    });

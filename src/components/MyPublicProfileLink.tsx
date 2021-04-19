@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import { useAuth } from './auth.context';
+import { useAuth } from '~auth.context';
 
 export const MyPublicProfileLink = () => {
     const { accountId, isSignedIn } = useAuth();

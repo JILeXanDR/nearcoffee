@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useAuth } from './auth.context';
+import { useAuth } from '~auth.context';
 
 const styles = {
     position: 'fixed',

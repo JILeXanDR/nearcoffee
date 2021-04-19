@@ -12,6 +12,7 @@ export type NearConfig = {
 };
 
 export type Config = NearConfig & {
+    env: string;
     contractName: string,
 };
 
@@ -19,6 +20,7 @@ export const getConfig = (env: GlobalEnv): Config => {
     switch (env.NODE_ENV) {
         case 'prod':
             return {
+                env: 'prod',
                 networkId: 'mainnet',
                 nodeUrl: 'https://rpc.mainnet.near.org',
                 walletUrl: 'https://wallet.near.org',
@@ -28,6 +30,7 @@ export const getConfig = (env: GlobalEnv): Config => {
             };
         case 'dev':
             return {
+                env: 'dev',
                 networkId: 'testnet',
                 nodeUrl: 'https://rpc.testnet.near.org',
                 walletUrl: 'https://wallet.testnet.near.org',

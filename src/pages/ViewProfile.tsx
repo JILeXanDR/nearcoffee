@@ -2,25 +2,45 @@ import * as nearAPI from 'near-api-js';
 import * as React from 'react';
 import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router';
-import { useNear } from './near.hook';
+import { Loading } from '~components/Loading';
+import { useConfig } from '~config';
+import { useNear } from '~near.adapter';
+import { useQuery } from '~utils';
 
 export const ViewProfile = () => {
     const nearAdapter = useNear();
-    const { profileId } = useParams();
+    const { link } = useParams();
+    const { env } = useConfig();
+    const query = useQuery();
+    const errorCode = query.get('errorCode');
+    const isProd = env === 'prod';
 
     const [profile, setProfile] = useState('');
     const [loading, setLoading] = useState(true);
 
     const coffeePrice = useMemo(() => (profile ? (profile.coffee_price / 10 ** 24) : 0).toString(), [profile]);
+    // TODO: suffix based on env
+    const profileId = useMemo(() => `${link}.${isProd ? 'near' : 'testnet'}`, [link]);
 
-    const butCoffee = async () => {
+    const buyCoffee = async () => {
         try {
             const amount = nearAPI.utils.format.parseNearAmount(coffeePrice);
-            await nearAdapter.buyCoffee(profileId, amount);
+            await nearAdapter.buyOneCoffeeFor(profileId, amount);
         } catch (e) {
             console.error(e);
         }
     };
+
+    useEffect(() => {
+        switch (errorCode) {
+            case 'userRejected': {
+                alert('Canceled');
+                break;
+            }
+            default: {
+            }
+        }
+    }, []);
 
     useEffect(() => {
         if (!nearAdapter) {
@@ -29,8 +49,7 @@ export const ViewProfile = () => {
 
         const load = async () => {
             try {
-                const res = await nearAdapter.getProfile(profileId);
-                console.log({ getProfile: res });
+                const res = await nearAdapter.getProfileOf(profileId);
                 setProfile(res);
             } catch (e) {
                 alert(e);
@@ -44,23 +63,18 @@ export const ViewProfile = () => {
     }, [nearAdapter]);
 
     if (loading) {
-        return <div>loading...</div>;
+        return <Loading/>;
     }
 
     if (!profile) {
-        return (
-            <div>
-                <h1>Profile {profileId} not found</h1>
-            </div>
-        );
+        return <h1>Profile <span className="font-bold">{profileId}</span> not found</h1>;
     }
 
     return (
         <div>
             <div>
                 <h1>You are on profile of {profileId} is {profile.description}</h1>
-                <h3>Coffee price is Ⓝ{coffeePrice}</h3>
-                <button onClick={butCoffee}>Buy coffee for {profileId}</button>
+                <button className="bg-blue-100 hover:bg-blue-200 rounded-md p-2" onClick={buyCoffee}>Buy coffee for {profileId} with coffee price is Ⓝ{coffeePrice}</button>
             </div>
         </div>
     );

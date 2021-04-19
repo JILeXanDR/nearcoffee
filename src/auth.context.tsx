@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
-import { useConfig } from './config';
-import { useNear } from './near.hook';
+import { useConfig } from '~config';
+import { useNear } from '~near.adapter';
 
 const AuthContext = React.createContext();
 
@@ -17,14 +17,15 @@ export const AuthProvider = (props) => {
 
     const login = async () => {
         try {
-            await nearAdapter.login();
+            const origin = window.location.origin;
+            await nearAdapter.walletConnection.requestSignIn('', 'NEAR Coffee', `${origin}/dashboard`, origin);
         } catch (e) {
             alert(e.toString());
         }
     };
 
     const logout = async () => {
-        await nearAdapter.logout();
+        await nearAdapter.walletConnection.signOut();
         setIsSignedIn(false);
         setAccountId('');
     };
