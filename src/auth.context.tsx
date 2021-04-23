@@ -1,24 +1,28 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
-import { useConfig } from '~config';
 import { useNear } from '~near.adapter';
 
-const AuthContext = React.createContext();
+const AuthContext = React.createContext<AuthData | undefined>(undefined);
 
-export const AuthProvider = (props) => {
+interface Props {
+}
+
+export const AuthProvider = (props: Props) => {
     console.log('AuthProvider');
 
-    const config = useConfig();
     const nearAdapter = useNear();
     const [isSignedIn, setIsSignedIn] = useState(false);
     const [accountId, setAccountId] = useState('');
 
-    console.log('useConfig', config);
-
     const login = async () => {
         try {
-            const origin = window.location.origin;
-            await nearAdapter.walletConnection.requestSignIn('', 'NEAR Coffee', `${origin}/dashboard`, origin);
+            const { origin: host, href: url } = window.location;
+            console.log(window.location);
+            await nearAdapter.walletConnection.requestSignIn({
+                // successUrl: `${host}/dashboard`,
+                successUrl: url,
+                failureUrl: url,
+            });
         } catch (e) {
             alert(e.toString());
         }
@@ -44,26 +48,22 @@ export const AuthProvider = (props) => {
         }
     }, [nearAdapter]);
 
-    // if (!nearAdapter) {
-    //     const empty = {};
-    //     return <AuthContext.Provider value={empty}/>;
-    // }
-
     return (
         <AuthContext.Provider value={{ login, logout, isSignedIn, accountId }} {...props}/>
     );
 };
 
-export type Data = {
+export interface AuthData {
     isSignedIn: boolean;
+    // NEAR account id (name.near)
     accountId: string;
-    login: Function,
-    logout: Function,
-};
+    login: () => {},
+    logout: () => {},
+}
 
-export const useAuth = (): Data => {
+export const useAuth = (): AuthData => {
     const context = React.useContext(AuthContext);
-    if (context === undefined) {
+    if (!context) {
         throw new Error(`useAuth must be used within a AuthProvider`);
     }
     return context;

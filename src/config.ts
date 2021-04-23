@@ -1,8 +1,10 @@
+// env given from parcel
 export type GlobalEnv = {
     NODE_ENV: string,
     CONTRACT_NAME: string,
 };
 
+// config passed into near-js library
 export type NearConfig = {
     networkId: string;
     nodeUrl: string;
@@ -11,6 +13,7 @@ export type NearConfig = {
     explorerUrl?: string;
 };
 
+// final app config
 export type Config = NearConfig & {
     env: string;
     contractName: string,
@@ -48,8 +51,8 @@ let config: Config;
 export const useConfig = (): Config => {
     if (!config) {
         config = getConfig({
-            NODE_ENV: process.env.NODE_ENV,
-            CONTRACT_NAME: process.env.CONTRACT_NAME,
+            NODE_ENV: process.env.NODE_ENV ?? '',
+            CONTRACT_NAME: process.env.CONTRACT_NAME ?? '',
         });
     }
     return config;

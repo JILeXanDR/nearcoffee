@@ -1,6 +1,7 @@
 import { connect, Contract, keyStores, Near, WalletConnection } from 'near-api-js';
 import { Config } from '~config';
 
+// blockchain type
 export type Profile = {
     // alias for NEAR account id
     profile_id: string;
@@ -9,11 +10,13 @@ export type Profile = {
     balance: number;
     cover_image_url: string;
     avatar_image_url: string;
+    // amount in yocto nears
+    coffee_price: number;
 };
 
 export type Supporter = string;
 
-export let instance: NearAdapter = null;
+export let instance: NearAdapter;
 
 export class NearAdapter {
     constructor(public near: Near, public walletConnection: WalletConnection, public contract: Contract) {
@@ -45,6 +48,7 @@ export class NearAdapter {
                 balance: 0,
                 cover_image_url: 'https://img.buymeacoffee.com/api/?url=aHR0cHM6Ly9jZG4uYnV5bWVhY29mZmVlLmNvbS91cGxvYWRzL3Byb2plY3RfdXBkYXRlcy8yMDIwLzA1L2Q5M2U3MTIwNGJhMzVhMDQ0N2U0YzZlZTMyYjVjMjI4LmpwZw==&size=400',
                 avatar_image_url: 'https://img.buymeacoffee.com/api/?url=aHR0cHM6Ly9jZG4uYnV5bWVhY29mZmVlLmNvbS91cGxvYWRzL3Byb2ZpbGVfcGljdHVyZXMvMjAyMC8wNC85ZDI1MGFkYWY0ODdhZWI1NTQyMjE5NTIwYjNhYjgwOS5qcGc=&size=300&name=Robin+Wong',
+                coffee_price: 10 ** 24,
             },
             {
                 profile_id: 'test2',
@@ -53,6 +57,8 @@ export class NearAdapter {
                 balance: 0,
                 cover_image_url: 'https://img.buymeacoffee.com/api/?url=aHR0cHM6Ly9jZG4uYnV5bWVhY29mZmVlLmNvbS91cGxvYWRzL3Byb2plY3RfdXBkYXRlcy8yMDIwLzA1L2Q5M2U3MTIwNGJhMzVhMDQ0N2U0YzZlZTMyYjVjMjI4LmpwZw==&size=400',
                 avatar_image_url: 'https://img.buymeacoffee.com/api/?url=aHR0cHM6Ly9jZG4uYnV5bWVhY29mZmVlLmNvbS91cGxvYWRzL3Byb2ZpbGVfcGljdHVyZXMvMjAyMC8wNC85ZDI1MGFkYWY0ODdhZWI1NTQyMjE5NTIwYjNhYjgwOS5qcGc=&size=300&name=Robin+Wong',
+                coffee_price: 2,
+
             },
             {
                 profile_id: 'test3',
@@ -61,6 +67,7 @@ export class NearAdapter {
                 balance: 0,
                 cover_image_url: 'https://img.buymeacoffee.com/api/?url=aHR0cHM6Ly9jZG4uYnV5bWVhY29mZmVlLmNvbS91cGxvYWRzL3Byb2plY3RfdXBkYXRlcy8yMDIwLzA1L2Q5M2U3MTIwNGJhMzVhMDQ0N2U0YzZlZTMyYjVjMjI4LmpwZw==&size=400',
                 avatar_image_url: 'https://img.buymeacoffee.com/api/?url=aHR0cHM6Ly9jZG4uYnV5bWVhY29mZmVlLmNvbS91cGxvYWRzL3Byb2ZpbGVfcGljdHVyZXMvMjAyMC8wNC85ZDI1MGFkYWY0ODdhZWI1NTQyMjE5NTIwYjNhYjgwOS5qcGc=&size=300&name=Robin+Wong',
+                coffee_price: 3,
             },
         ];
     }

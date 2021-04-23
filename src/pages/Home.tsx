@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { ProfileCard } from '~components/ProfileCard';
 import { Profile, useNear } from '~near.adapter';
+import { removeNearAddressSuffix } from '~utils';
 
 export const Home = () => {
     const near = useNear();
@@ -17,9 +18,9 @@ export const Home = () => {
     }, []);
 
     const goProfile = (profile: Profile) => {
-        const strings = profile.profile_id.split('.');
-        const link = strings.splice(0, strings.length).join('.');
-        history.push(`/${link}`);
+        const url = removeNearAddressSuffix(profile.profile_id);
+        console.log({ url });
+        history.push(url);
     };
 
     return (
@@ -40,13 +41,9 @@ export const Home = () => {
             </div>
 
             <div>
-                <h1>Explore profiles</h1>
-                <div className="flex">
-                    {profiles.map(profile => {
-                        return (
-                            <ProfileCard className="m-2" onClick={() => goProfile(profile)} key={profile.profile_id} {...profile}/>
-                        );
-                    })}
+                <h1 className="text-2xl font-bold text-blue-600">Explore popular profiles</h1>
+                <div className="flex flex-wrap bg-blue-100 justify-center">
+                    {profiles.map(profile => <ProfileCard className="m-2 w-1/4" onClick={() => goProfile(profile)} key={profile.profile_id} {...profile}/>)}
                 </div>
             </div>
         </>
