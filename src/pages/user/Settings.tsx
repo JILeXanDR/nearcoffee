@@ -17,7 +17,7 @@ export const SettingsTab = () => {
 
     return (
         <>
-            <Card>
+            <Card classes={[]}>
                 <h1>Settings tab</h1>
                 <div>
                     <form onSubmit={handleSubmit}>

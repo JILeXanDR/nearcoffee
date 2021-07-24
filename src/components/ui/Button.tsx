@@ -2,6 +2,7 @@ import * as React from 'react';
 import { classNames } from '~utils';
 
 interface Props {
+    children: any;
     bg: string;
     hover: string;
     rounded: boolean | string;
