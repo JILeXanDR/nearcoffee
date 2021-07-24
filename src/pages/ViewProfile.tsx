@@ -14,6 +14,7 @@ import { classNames, normalizeNearAmount, parseNearAmount, removeNearAddressSuff
 export const ViewProfile = () => {
     const { isSignedIn, accountId } = useAuth();
     const nearAdapter = useNear();
+    // @ts-ignore
     const { link } = useParams();
     const { env } = useConfig();
     const query = useQuery();

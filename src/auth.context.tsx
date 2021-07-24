@@ -1,10 +1,10 @@
-import * as React from 'react';
-import { useEffect, useState } from 'react';
-import { useNear } from '~near.adapter';
+import React from 'react';
+import {useEffect, useState} from 'react';
+import {useNear} from '~near.adapter';
 
 const AuthContext = React.createContext<AuthData | undefined>(undefined);
 
-interface Props {
+type Props = {
 }
 
 export const AuthProvider = (props: Props) => {
@@ -16,8 +16,7 @@ export const AuthProvider = (props: Props) => {
 
     const login = async () => {
         try {
-            const { origin: host, href: url } = window.location;
-            console.log(window.location);
+            const {origin: host, href: url} = window.location;
             await nearAdapter.walletConnection.requestSignIn({
                 // successUrl: `${host}/dashboard`,
                 successUrl: url,
@@ -49,11 +48,11 @@ export const AuthProvider = (props: Props) => {
     }, [nearAdapter]);
 
     return (
-        <AuthContext.Provider value={{ login, logout, isSignedIn, accountId }} {...props}/>
+        <AuthContext.Provider value={{login, logout, isSignedIn, accountId}} {...props}/>
     );
 };
 
-export interface AuthData {
+export type AuthData = {
     isSignedIn: boolean;
     // NEAR account id (name.near)
     accountId: string;
