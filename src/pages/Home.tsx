@@ -42,13 +42,7 @@ export const Home = () => {
             <div>
                 <h1 className="text-2xl font-bold text-blue-600">Explore popular profiles</h1>
                 <div className="flex flex-wrap bg-blue-100 justify-center">
-                    {profiles.map(profile => {
-                        return (
-                            <>
-                                <ProfileCard className="m-2 w-1/4" onClick={() => goProfile(profile)} key={profile.account_id} {...profile}/>
-                            </>
-                        );
-                    })}
+                    {profiles.map(profile => <ProfileCard className="m-2 w-1/4" onClick={() => goProfile(profile)} key={profile.account_id} {...profile}/>)}
                 </div>
             </div>
         </div>
