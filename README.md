@@ -62,6 +62,11 @@ near call $CONTRACT swap_coffee '{}' --accountId $ACCOUNT_ID
 near call $CONTRACT withdraw_fees '{}' --accountId $ACCOUNT_ID
 ```
 
+```shell
+# Get all profiles
+near call $CONTRACT get_all_profiles '{}' --accountId $ACCOUNT_ID
+```
+
 ## TODO:
 
 - [ ] MVP

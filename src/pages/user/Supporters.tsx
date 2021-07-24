@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { useAuth } from '~auth.context';
+import { Card } from '~components/Card';
 import { useConfig } from '~config';
 import { Supporter, useNear } from '~near.adapter';
 
@@ -28,16 +29,18 @@ export const SupportersTab = () => {
 
     return (
         <>
-            <h3>Supporters ({supporters.length})</h3>
-            <ol>
-                {supporters.map((val, index) => {
-                    return (
-                        <li key={index}>
-                            <a href={makeWalletUrl(val)} target="_blank">{val}</a>
-                        </li>
-                    );
-                })}
-            </ol>
+            <Card>
+                <h3>Supporters ({supporters.length})</h3>
+                <ol>
+                    {supporters.map((val, index) => {
+                        return (
+                            <li key={index}>
+                                <a href={makeWalletUrl(val)} target="_blank">{val}</a>
+                            </li>
+                        );
+                    })}
+                </ol>
+            </Card>
         </>
     );
 };

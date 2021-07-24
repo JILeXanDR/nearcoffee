@@ -22,6 +22,7 @@ export type Config = NearConfig & {
 export const getConfig = (env: GlobalEnv): Config => {
     switch (env.NODE_ENV) {
         case 'prod':
+        case 'production':
             return {
                 env: 'prod',
                 networkId: 'mainnet',
@@ -32,6 +33,7 @@ export const getConfig = (env: GlobalEnv): Config => {
                 contractName: env.CONTRACT_NAME,
             };
         case 'dev':
+        case 'development':
             return {
                 env: 'dev',
                 networkId: 'testnet',

@@ -14,17 +14,16 @@ export const Home = () => {
     useEffect(() => {
         near.getAllProfiles()
             .then(list => setProfiles(list))
-            .catch(e => console.error(e));
+            .catch(e => alert(e.toString()));
     }, []);
 
     const goProfile = (profile: Profile) => {
-        const url = removeNearAddressSuffix(profile.profile_id);
-        console.log({ url });
+        const url = removeNearAddressSuffix(profile.account_id);
         history.push(url);
     };
 
     return (
-        <>
+        <div className="container mx-auto">
             <div className="w-full p-4">
                 <div className="flex">
                     <div className="rounded-md border-dotted shadow-lg bg-clip-border border-dashed p-4 m-4 bg-gradient-to-r from-yellow-200 to-orange-300">
@@ -43,9 +42,15 @@ export const Home = () => {
             <div>
                 <h1 className="text-2xl font-bold text-blue-600">Explore popular profiles</h1>
                 <div className="flex flex-wrap bg-blue-100 justify-center">
-                    {profiles.map(profile => <ProfileCard className="m-2 w-1/4" onClick={() => goProfile(profile)} key={profile.profile_id} {...profile}/>)}
+                    {profiles.map(profile => {
+                        return (
+                            <>
+                                <ProfileCard className="m-2 w-1/4" onClick={() => goProfile(profile)} key={profile.account_id} {...profile}/>
+                            </>
+                        );
+                    })}
                 </div>
             </div>
-        </>
+        </div>
     );
 };

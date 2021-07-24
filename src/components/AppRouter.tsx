@@ -1,14 +1,13 @@
-import { createBrowserHistory } from 'history';
 import * as React from 'react';
 import { Route, Switch } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import { useAuth } from '~auth.context';
 import { CoffeeLayout } from '~components/CoffeLayout';
-import { Index as Dashboard } from '~pages/Dashboard/Index';
 import { Home } from '~pages/Home';
+import { Index as User } from '~pages/User/Index';
 import { ViewProfile } from '~pages/ViewProfile';
 
-const history = createBrowserHistory();
+// const history = createBrowserHistory();
 
 export const AppRouter = () => {
     const auth = useAuth();
@@ -18,7 +17,7 @@ export const AppRouter = () => {
             <CoffeeLayout>
                 <Switch>
                     <Route exact path="/" render={(props) => <Home/>}/>
-                    <Route path="/dashboard" render={(props) => {
+                    <Route path="/user" render={(props) => {
                         if (!auth.isSignedIn) {
                             return (
                                 <div className="p-4 text-center">
@@ -26,7 +25,7 @@ export const AppRouter = () => {
                                 </div>
                             );
                         }
-                        return <Dashboard/>;
+                        return <User/>;
                     }}/>
                     <Route path="/:link" render={(props) => <ViewProfile/>}/>
                 </Switch>
