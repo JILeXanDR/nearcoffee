@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {classNames} from '~utils';
+import { classNames } from '../utils';
 
 type Props = {
     style?: React.CSSProperties;

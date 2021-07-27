@@ -1,5 +1,5 @@
 import { connect, Contract, keyStores, Near, WalletConnection } from 'near-api-js';
-import { Config } from '~config';
+import { Config } from './config';
 
 // blockchain type
 export type Profile = {

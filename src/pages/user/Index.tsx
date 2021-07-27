@@ -1,12 +1,12 @@
 import { ChartSquareBarIcon, CogIcon, UserGroupIcon } from '@heroicons/react/outline';
 import * as React from 'react';
 import { Route, Switch, useRouteMatch } from 'react-router';
-import { useAuth } from '~auth.context';
-import { SidebarMenuItem } from '~components/SidebarMenuItem';
-import { DefaultTab } from '~pages/user/Default';
-import { SettingsTab } from '~pages/user/Settings';
-import { SupportersTab } from '~pages/user/Supporters';
-import { userImage } from '~static';
+import { useAuth } from '../../auth.context';
+import { SidebarMenuItem } from '../../components/SidebarMenuItem';
+import { DefaultTab } from './Default';
+import { SettingsTab } from './Settings';
+import { SupportersTab } from './Supporters';
+import { userImage } from '../../static';
 
 // TODO: only for users with connected wallet (is_signed = true)
 export const Index = () => {

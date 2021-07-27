@@ -2,9 +2,9 @@ import { HeartIcon, LockOpenIcon, PresentationChartBarIcon, UserGroupIcon } from
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useAuth } from '~auth.context';
-import { Card } from '~components/Card';
-import { Profile, useNear } from '~near.adapter';
+import { useAuth } from '../../auth.context';
+import { Card } from '../../components/Card';
+import { Profile, useNear } from '../../near.adapter';
 
 export const DefaultTab = () => {
     const near = useNear();

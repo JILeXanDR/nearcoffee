@@ -3,13 +3,13 @@ import * as React from 'react';
 import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
-import { useAuth } from '~auth.context';
-import { Card } from '~components/Card';
-import { Loading } from '~components/Loading';
-import { useConfig } from '~config';
-import { Profile, useNear } from '~near.adapter';
-import { coverImage, userImage } from '~static';
-import { classNames, normalizeNearAmount, parseNearAmount, removeNearAddressSuffix, toNearAddress, useQuery } from '~utils';
+import { useAuth } from '../auth.context';
+import { Card } from '../components/Card';
+import { Loading } from '../components/Loading';
+import { useConfig } from "~config";
+import { Profile, useNear } from '../near.adapter';
+import { coverImage, userImage } from '../static';
+import { classNames, normalizeNearAmount, parseNearAmount, removeNearAddressSuffix, toNearAddress, useQuery } from '../utils';
 
 export const ViewProfile = () => {
     const { isSignedIn, accountId } = useAuth();

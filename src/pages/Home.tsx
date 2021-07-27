@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
-import { ProfileCard } from '~components/ProfileCard';
-import { Profile, useNear } from '~near.adapter';
+import { ProfileCard } from '../components/ProfileCard';
+import { Profile, useNear } from '../near.adapter';
 import { removeNearAddressSuffix } from '~utils';
+import { useErrorContainer } from "../hooks/error.handler";
 
 export const Home = () => {
     const near = useNear();
@@ -17,9 +18,12 @@ export const Home = () => {
             .catch(e => alert(e.toString()));
     }, []);
 
+    const [addError, errorContainer] = useErrorContainer();
+
     const goProfile = (profile: Profile) => {
-        const url = removeNearAddressSuffix(profile.account_id);
-        history.push(url);
+        // addError('fake error ' + Date.now() / 1000);
+        // const url = removeNearAddressSuffix(profile.account_id);
+        // history.push(url);
     };
 
     return (
@@ -45,6 +49,8 @@ export const Home = () => {
                     {profiles.map(profile => <ProfileCard className="m-2 w-1/4" onClick={() => goProfile(profile)} key={profile.account_id} {...profile}/>)}
                 </div>
             </div>
+
+            {errorContainer}
         </div>
     );
 };

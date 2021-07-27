@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
-import { useAuth } from '~auth.context';
-import { Card } from '~components/Card';
-import { useConfig } from '~config';
-import { Supporter, useNear } from '~near.adapter';
+import { useAuth } from '../../auth.context';
+import { Card } from '../../components/Card';
+import { useConfig } from '../../config';
+import { Supporter, useNear } from '../../near.adapter';
 
 export const SupportersTab = () => {
     const auth = useAuth();

@@ -3,9 +3,9 @@ import { ArrowRightIcon, ChartSquareBarIcon, LogoutIcon, UserCircleIcon } from '
 import * as React from 'react';
 import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import { useAuth } from '~auth.context';
-import { MenuItem } from '~components/MenuItem';
-import { classNames, removeNearAddressSuffix } from '~utils';
+import { useAuth } from '../auth.context';
+import { MenuItem } from './MenuItem';
+import { classNames, removeNearAddressSuffix } from '../utils';
 
 interface Props {
     userImageUrl: string;

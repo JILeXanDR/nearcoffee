@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Profile } from '~near.adapter';
-import { classNames } from '~utils';
+import { Profile } from '../near.adapter';
+import { classNames } from '../utils';
 
 interface Props extends Profile {
     onClick: Function,

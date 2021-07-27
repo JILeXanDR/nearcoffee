@@ -1,6 +1,6 @@
 import React from 'react';
-import {useState} from 'react';
-import {Card} from '~components/Card';
+import { useState } from 'react';
+import { Card } from '../../components/Card';
 
 export const SettingsTab = () => {
     const [loading, setLoading] = useState(false);
