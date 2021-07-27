@@ -3,12 +3,12 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "jsx": "react",
-    "baseUrl": "./src",
-    "paths": {
-      "~*": [
-        "./*"
-      ]
-    }
+    "baseUrl": "./src"
+    //    "paths": {
+    //      "~*": [
+    //        "./*"
+    //      ]
+    //    }
   },
   "include": [
     "src/**/*"
