@@ -53,7 +53,8 @@ let config: Config;
 export const useConfig = (): Config => {
     if (!config) {
         config = getConfig({
-            NODE_ENV: process.env.NODE_ENV ?? '',
+            // NODE_ENV: process.env.NODE_ENV ?? '',
+            NODE_ENV: 'development',
             CONTRACT_NAME: process.env.CONTRACT_NAME ?? '',
         });
     }

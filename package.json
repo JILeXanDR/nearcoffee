@@ -9,6 +9,7 @@
     "be:test": "(cd contract && cargo test)",
     "be:build": "(cd contract && ./build.sh)",
     "be:dev_deploy": "near dev-deploy out/main.wasm",
+    "be:deploy": "NEAR_ENV=mainnet near deploy coffees.near out/main.wasm",
     "be:clear": "rm -R neardev",
     "be:build_and_dev_deploy": "yarn be:build && yarn be:dev_deploy"
   },
